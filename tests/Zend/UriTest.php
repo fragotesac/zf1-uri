@@ -20,10 +20,6 @@
  * @version    $Id $
  */
 
-/**
- * Zend_Uri
- */
-require_once 'Zend/Uri.php';
 
 /**
  * @category   Zend
@@ -83,7 +79,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Zend_Config
-     *
+     * @doesNotPerformAssertions
      * @group ZF-5578
      */
     public function testSetConfigWithArray()
@@ -93,7 +89,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Array
-     *
+     * @doesNotPerformAssertions
      * @group ZF-5578
      */
     public function testSetConfigWithZendConfig()

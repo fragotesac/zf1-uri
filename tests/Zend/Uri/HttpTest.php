@@ -20,16 +20,6 @@
  * @version    $Id$
  */
 
-/**
- * @see Zend_Uri
- */
-require_once 'Zend/Uri.php';
-
-/**
- * @see Zend_Uri_Http
- */
-require_once 'Zend/Uri/Http.php';
-
 
 /**
  * @category   Zend
@@ -304,11 +294,8 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
      */
     protected function _testInvalidUri($uri)
     {
-        try {
-            $obj = Zend_Uri::factory($uri);
-            $this->fail('Zend_Uri_Exception was expected but not thrown');
-        } catch (Zend_Uri_Exception $e) {
-        }
+        $this->expectException(Zend_Uri_Exception::class);
+        $obj = Zend_Uri::factory($uri);
     }
 
     public function testSetGetUsername()
