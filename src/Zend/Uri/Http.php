@@ -458,7 +458,7 @@ class Zend_Uri_Http extends Zend_Uri
      * Returns true if and only if the TCP port string passes validation. If no port is passed,
      * then the port contained in the instance variable is used.
      *
-     * @param  string $port The HTTP port
+     * @param  string|int $port The HTTP port
      * @return boolean
      */
     public function validatePort($port = null)
