@@ -31,7 +31,6 @@
  */
 class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 {
-
     public function setup()
     {
         Zend_Uri::setConfig(array('allow_unwise' => false));
@@ -60,8 +59,11 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 
         foreach ($tests as $uri) {
             $obj = Zend_Uri_Http::fromString($uri);
-            $this->assertEquals($uri, $obj->getUri(),
-                "getUri() returned value that differs from input for $uri");
+            $this->assertEquals(
+                $uri,
+                $obj->getUri(),
+                "getUri() returned value that differs from input for $uri"
+            );
         }
     }
 
@@ -200,18 +202,18 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
      */
     public function testUnencodedQueryParameters()
     {
-         $uri = Zend_Uri::factory('http://foo.com/bar');
+        $uri = Zend_Uri::factory('http://foo.com/bar');
 
-         // First, make sure no exceptions are thrown
-         try {
-             $uri->setQuery('id=123&url=http://example.com/?bar=foo baz');
-         } catch (Exception $e) {
-             $this->fail('setQuery() was expected to handle unencoded parameters, but failed');
-         }
+        // First, make sure no exceptions are thrown
+        try {
+            $uri->setQuery('id=123&url=http://example.com/?bar=foo baz');
+        } catch (Exception $e) {
+            $this->fail('setQuery() was expected to handle unencoded parameters, but failed');
+        }
 
-         // Second, make sure the query string was properly encoded
-         $parts = parse_url($uri->getUri());
-         $this->assertEquals('id=123&url=http%3A%2F%2Fexample.com%2F%3Fbar%3Dfoo+baz', $parts['query']);
+        // Second, make sure the query string was properly encoded
+        $parts = parse_url($uri->getUri());
+        $this->assertEquals('id=123&url=http%3A%2F%2Fexample.com%2F%3Fbar%3Dfoo+baz', $parts['query']);
     }
 
     /**
@@ -267,7 +269,7 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
      */
     public function testVeryLongUriZF3712()
     {
-        if(!defined('TESTS_ZEND_URI_CRASH_TEST_ENABLED') || constant('TESTS_ZEND_URI_CRASH_TEST_ENABLED') == false) {
+        if (!defined('TESTS_ZEND_URI_CRASH_TEST_ENABLED') || constant('TESTS_ZEND_URI_CRASH_TEST_ENABLED') == false) {
             $this->markTestSkipped('The constant TESTS_ZEND_URI_CRASH_TEST_ENABLED has to be defined and true to allow the test to work.');
         }
         $uri = file_get_contents(dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR .
@@ -300,7 +302,7 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 
     public function testSetGetUsername()
     {
-        $uri = Zend_Uri::factory('http://example.com');
+        $uri      = Zend_Uri::factory('http://example.com');
         $username = 'alice';
         $this->assertFalse($uri->getUsername());
         $uri->setUsername($username);
@@ -309,7 +311,7 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 
     public function testSetGetPassword()
     {
-        $uri = Zend_Uri::factory('http://example.com');
+        $uri      = Zend_Uri::factory('http://example.com');
         $username = 'alice';
         $password = 'secret';
         $this->assertFalse($uri->getPassword());
@@ -364,7 +366,7 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 
     public function testSetEmptyHost()
     {
-        $uri = Zend_Uri::factory('http://example.com');
+        $uri  = Zend_Uri::factory('http://example.com');
         $host = '';
         $this->expectException('Zend_Uri_Exception');
         $uri->setHost($host);
@@ -372,7 +374,7 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 
     public function testSetInvalidHost()
     {
-        $uri = Zend_Uri::factory('http://example.com');
+        $uri  = Zend_Uri::factory('http://example.com');
         $host = 'example§com';
         $this->expectException('Zend_Uri_Exception');
         $uri->setHost($host);
@@ -430,12 +432,12 @@ class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
      */
     public function testParserSupportsLiteralIpv6AddressesInUri()
     {
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[1080:0:0:0:8:800:200C:417A]/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[3ffe:2a00:100:7031::1]')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[1080::8:800:200C:417A]/foo')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[::192.9.5.5]/ipng')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[::FFFF:129.144.52.38]:80/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[2010:836B:4179::836B:4179]')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[1080:0:0:0:8:800:200C:417A]/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[3ffe:2a00:100:7031::1]')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[1080::8:800:200C:417A]/foo')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[::192.9.5.5]/ipng')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[::FFFF:129.144.52.38]:80/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[2010:836B:4179::836B:4179]')->valid());
     }
 }

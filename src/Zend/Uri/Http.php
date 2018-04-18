@@ -112,20 +112,20 @@ class Zend_Uri_Http extends Zend_Uri
         // are to be used with slash-delimited regular expression strings.
 
         // Escaped special characters (eg. '%25' for '%')
-        $this->_regex['escaped']    = '%[[:xdigit:]]{2}';
+        $this->_regex['escaped'] = '%[[:xdigit:]]{2}';
 
         // Unreserved characters
         $this->_regex['unreserved'] = '[' . self::CHAR_ALNUM . self::CHAR_MARK . ']';
 
         // Segment can use escaped, unreserved or a set of additional chars
-        $this->_regex['segment']    = '(?:' . $this->_regex['escaped'] . '|[' .
+        $this->_regex['segment'] = '(?:' . $this->_regex['escaped'] . '|[' .
             self::CHAR_ALNUM . self::CHAR_MARK . self::CHAR_SEGMENT . '])*';
 
         // Path can be a series of segmets char strings seperated by '/'
-        $this->_regex['path']       = '(?:\/(?:' . $this->_regex['segment'] . ')?)+';
+        $this->_regex['path'] = '(?:\/(?:' . $this->_regex['segment'] . ')?)+';
 
         // URI characters can be escaped, alphanumeric, mark or reserved chars
-        $this->_regex['uric']       = '(?:' . $this->_regex['escaped'] . '|[' .
+        $this->_regex['uric'] = '(?:' . $this->_regex['escaped'] . '|[' .
             self::CHAR_ALNUM . self::CHAR_MARK . self::CHAR_RESERVED .
 
         // If unwise chars are allowed, add them to the URI chars class
@@ -215,7 +215,7 @@ class Zend_Uri_Http extends Zend_Uri
         $this->_host     = isset($matches[5]) === true
                          ? preg_replace('~^\[([^]]+)\]$~', '\1', $matches[5])  // Strip wrapper [] from IPv6 literal
                          : '';
-        $this->_port     = isset($matches[7]) === true ? $matches[7] : '';
+        $this->_port = isset($matches[7]) === true ? $matches[7] : '';
     }
 
     /**
@@ -572,7 +572,7 @@ class Zend_Uri_Http extends Zend_Uri
      */
     public function getQueryAsArray()
     {
-        $query = $this->getQuery();
+        $query       = $this->getQuery();
         $querryArray = array();
         if ($query !== false) {
             parse_str($query, $querryArray);

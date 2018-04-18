@@ -33,7 +33,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
-        $this->notices = array();
+        $this->notices        = array();
         $this->errorReporting = error_reporting();
         $this->displayErrors  = ini_get('display_errors');
     }
@@ -130,7 +130,6 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
         $this->assertEmpty($text);
         $this->assertTrue(isset($this->error));
         $this->assertContains('Exception in getUri()', $this->error);
-
     }
 
     /**
@@ -193,18 +192,27 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
         $uri = $this->_testValidUri('http://example.net', 'Zend_Uri_Mock');
         $this->assertTrue($uri instanceof Zend_Uri_Mock, 'Zend_Uri_Mock object not returned.');
     }
-
 }
 class Zend_Uri_Mock extends Zend_Uri
 {
-    protected function __construct($scheme, $schemeSpecific = '') { }
-    public function getUri() { }
-    public function valid() { }
+    protected function __construct($scheme, $schemeSpecific = '')
+    {
+    }
+    public function getUri()
+    {
+    }
+    public function valid()
+    {
+    }
 }
 class Zend_Uri_ExceptionCausing extends Zend_Uri
 {
-    protected function __construct($scheme, $schemeSpecific = '') { }
-    public function valid() { }
+    protected function __construct($scheme, $schemeSpecific = '')
+    {
+    }
+    public function valid()
+    {
+    }
     public function getUri()
     {
         throw new Exception('Exception in getUri()');

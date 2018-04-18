@@ -1,4 +1,7 @@
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../tests/*
+        - %rootDir%/../../../vendor/*
     ignoreErrors:
         # This constructor uses func_get_args when the first param isn't an array or Zend_Config, hard to define properly in docblock
         - '#Parameter \#1 \$options of class Zend_Validate_Hostname constructor expects array\|Zend_Config, int given\.#'
