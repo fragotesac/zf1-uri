@@ -191,11 +191,6 @@ class Zend_Uri_Http extends Zend_Uri
             throw new Zend_Uri_Exception('Internal error: scheme-specific decomposition failed');
         }
 
-        // Failed decomposition; no further processing needed
-        if ($status === false) {
-            return;
-        }
-
         // Save URI components that need no further decomposition
         $this->_path     = isset($matches[4]) === true ? $matches[4] : '';
         $this->_query    = isset($matches[6]) === true ? $matches[6] : '';
@@ -468,7 +463,7 @@ class Zend_Uri_Http extends Zend_Uri
         }
 
         // If the port is empty, then it is considered valid
-        if (strlen($port) === 0) {
+        if (strlen((string) $port) === 0) {
             return true;
         }
 
