@@ -11,6 +11,3 @@ parameters:
         -
             message: '#Strict comparison using === between true and false will always evaluate to false\.#'
             path: %currentWorkingDirectory%/src/Zend/Uri/Http.php
-        -
-            message: '#Property Zend_Uri_Http::\$_host \(string\) does not accept array\|string\|null\.#'
-            path: %currentWorkingDirectory%/src/Zend/Uri/Http.php
