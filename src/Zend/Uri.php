@@ -125,7 +125,6 @@ abstract class Zend_Uri
                     // TODO
                 default:
                     throw new Zend_Uri_Exception("Scheme \"$scheme\" is not supported");
-                    break;
             }
         }
 
@@ -162,6 +161,7 @@ abstract class Zend_Uri
      * Set global configuration options
      *
      * @param Zend_Config|array $config
+     * @return void
      */
     public static function setConfig($config)
     {
