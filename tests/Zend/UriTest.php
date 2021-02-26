@@ -31,14 +31,14 @@
  */
 class Zend_UriTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->notices        = array();
         $this->errorReporting = error_reporting();
         $this->displayErrors  = ini_get('display_errors');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         error_reporting($this->errorReporting);
         ini_set('display_errors', $this->displayErrors);
@@ -129,7 +129,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
 
         $this->assertEmpty($text);
         $this->assertTrue(isset($this->error));
-        $this->assertContains('Exception in getUri()', $this->error);
+        $this->assertStringContainsString('Exception in getUri()', $this->error);
     }
 
     /**

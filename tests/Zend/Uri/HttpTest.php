@@ -31,7 +31,7 @@
  */
 class Zend_Uri_HttpTest extends PHPUnit\Framework\TestCase
 {
-    public function setup()
+    public function setup(): void
     {
         Zend_Uri::setConfig(array('allow_unwise' => false));
     }
