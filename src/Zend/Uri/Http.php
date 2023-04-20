@@ -208,7 +208,7 @@ class Zend_Uri_Http extends Zend_Uri
         $this->_username = isset($matches[2]) === true ? $matches[2] : '';
         $this->_password = isset($matches[4]) === true ? $matches[4] : '';
         $this->_host     = isset($matches[5]) === true
-                         ? preg_replace('~^\[([^]]+)\]$~', '\1', $matches[5])  // Strip wrapper [] from IPv6 literal
+                         ? (string) preg_replace('~^\[([^]]+)\]$~', '\1', $matches[5])  // Strip wrapper [] from IPv6 literal
                          : '';
         $this->_port = isset($matches[7]) === true ? $matches[7] : '';
     }

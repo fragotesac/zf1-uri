@@ -31,6 +31,11 @@
  */
 class Zend_UriTest extends PHPUnit\Framework\TestCase
 {
+    protected $notices;
+    protected $errorReporting;
+    protected $displayErrors;
+    protected $error;
+
     public function setUp(): void
     {
         $this->notices        = array();
@@ -169,7 +174,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
     protected function _testValidUri($uri, $className = null)
     {
         $uri = Zend_Uri::factory($uri, $className);
-        $this->assertTrue($uri instanceof Zend_Uri, 'Zend_Uri object not returned.');
+        $this->assertInstanceOf(Zend_Uri::class, $uri, 'Zend_Uri object not returned.');
         return $uri;
     }
 
@@ -190,7 +195,7 @@ class Zend_UriTest extends PHPUnit\Framework\TestCase
     public function testFactoryWithExistingClassReturnObject()
     {
         $uri = $this->_testValidUri('http://example.net', 'Zend_Uri_Mock');
-        $this->assertTrue($uri instanceof Zend_Uri_Mock, 'Zend_Uri_Mock object not returned.');
+        $this->assertInstanceOf(Zend_Uri_Mock::class, $uri, 'Zend_Uri_Mock object not returned.');
     }
 }
 class Zend_Uri_Mock extends Zend_Uri
